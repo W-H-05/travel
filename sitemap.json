@@ -1,0 +1,9 @@
+{
+  "desc": "GreenTravel Pro sitemap",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

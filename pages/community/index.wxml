@@ -1,0 +1,14 @@
+<view class="page-shell page-padding safe-bottom">
+  <view wx:for="{{posts}}" wx:key="id" class="community-item card" data-id="{{item.id}}" bindtap="openPost">
+    <image class="community-item-image" src="{{item.img}}" mode="aspectFill"></image>
+    <view class="community-item-like">❤ {{item.likes}}</view>
+    <view class="community-item-body">
+      <view class="community-item-title">{{item.title}}</view>
+      <view class="community-item-desc line-clamp-2">{{item.content}}</view>
+      <view class="community-item-author">
+        <image class="community-item-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <text>{{item.author}}</text>
+      </view>
+    </view>
+  </view>
+</view>

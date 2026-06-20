@@ -1,0 +1,348 @@
+.itinerary-page {
+  background:
+    radial-gradient(circle at 18% 28%, rgba(139, 69, 19, 0.06), transparent 32%),
+    radial-gradient(circle at 82% 70%, rgba(139, 69, 19, 0.06), transparent 30%),
+    linear-gradient(90deg, rgba(139, 69, 19, 0.1) 0%, transparent 5%, transparent 95%, rgba(139, 69, 19, 0.1) 100%),
+    #e8d5a5;
+  box-shadow: inset 0 0 56rpx rgba(139, 69, 19, 0.16);
+}
+
+.itinerary-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 28rpx 28rpx 24rpx;
+  border-bottom: 2rpx solid rgba(122, 62, 20, 0.14);
+  background: rgba(232, 213, 165, 0.92);
+  box-shadow: 0 8rpx 18rpx rgba(91, 52, 18, 0.06);
+  animation: fadeUp 360ms ease both;
+}
+
+.itinerary-head {
+  flex: 1;
+  padding-right: 24rpx;
+}
+
+.itinerary-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #5c2e00;
+}
+
+.itinerary-subtitle {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: rgba(122, 62, 20, 0.76);
+}
+
+.itinerary-delete {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #991b1b;
+  font-size: 34rpx;
+  background: rgba(212, 184, 114, 0.28);
+}
+
+.itinerary-banner {
+  margin-bottom: 36rpx;
+  padding: 18rpx 0 12rpx;
+  text-align: center;
+  animation: fadeUp 460ms ease both;
+}
+
+.itinerary-banner-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #5c2e00;
+  line-height: 1.15;
+}
+
+.itinerary-banner-icon {
+  margin-right: 14rpx;
+  font-size: 40rpx;
+}
+
+.itinerary-banner-text {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.65;
+  color: rgba(122, 62, 20, 0.82);
+}
+
+.map-stage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18rpx;
+  animation: fadeUp 520ms ease both;
+}
+
+.map-path-segment {
+  position: absolute;
+  height: 10rpx;
+  border-radius: 999rpx;
+  background: repeating-linear-gradient(90deg, #b6463e 0 16rpx, transparent 16rpx 30rpx);
+  opacity: 0.92;
+  transform-origin: center;
+  z-index: 0;
+}
+
+.map-node {
+  position: absolute;
+  width: 0;
+  z-index: 2;
+}
+
+.map-pin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 74rpx;
+  height: 74rpx;
+  border-radius: 999rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  background: #7a3e14;
+  color: #fff9e6;
+  border: 8rpx solid #ead7a6;
+  box-shadow: 0 10rpx 24rpx rgba(91, 52, 18, 0.16);
+  z-index: 3;
+}
+
+.map-pin-last {
+  background: transparent;
+  border-color: transparent;
+  color: #dc2626;
+  box-shadow: none;
+}
+
+.map-pin-icon {
+  font-size: 34rpx;
+}
+
+.map-pin-cross {
+  font-size: 76rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.map-card {
+  position: absolute;
+  top: 20rpx;
+  left: 0;
+  width: 292rpx;
+  padding: 46rpx 22rpx 24rpx;
+  background: #fff9e6;
+  border: 2rpx solid rgba(212, 184, 114, 0.92);
+  border-radius: 4rpx;
+  box-shadow: 0 14rpx 30rpx rgba(91, 52, 18, 0.14);
+  text-align: center;
+  transform-origin: top center;
+}
+
+.map-step {
+  position: absolute;
+  top: -18rpx;
+  right: -18rpx;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 999rpx;
+  background: #7a3e14;
+  border: 3rpx solid #fff9e6;
+  color: #fff9e6;
+  font-size: 22rpx;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 14rpx rgba(91, 52, 18, 0.16);
+}
+
+.map-time {
+  display: inline-block;
+  margin-bottom: 18rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+  background: rgba(240, 224, 184, 0.9);
+  color: #7a3e14;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.map-desc {
+  font-size: 24rpx;
+  line-height: 1.72;
+  color: #5c2e00;
+  min-height: 164rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.map-tag {
+  display: inline-flex;
+  margin-top: 18rpx;
+  padding: 8rpx 14rpx;
+  border-radius: 6rpx;
+  font-size: 18rpx;
+  font-weight: 700;
+}
+
+.map-mountain {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  opacity: 0.42;
+  z-index: 0;
+}
+
+.mountain-top-left {
+  top: 260rpx;
+  left: 18rpx;
+}
+
+.mountain-mid-right {
+  top: 760rpx;
+  right: 12rpx;
+}
+
+.mountain-bottom-left {
+  top: 1240rpx;
+  left: 48rpx;
+}
+
+.peak {
+  width: 0;
+  height: 0;
+  border-left: 22rpx solid transparent;
+  border-right: 22rpx solid transparent;
+  border-bottom: 58rpx solid #c39a61;
+}
+
+.peak-large {
+  border-left-width: 30rpx;
+  border-right-width: 30rpx;
+  border-bottom-width: 74rpx;
+}
+
+.peak-small {
+  margin-left: -8rpx;
+  border-left-width: 24rpx;
+  border-right-width: 24rpx;
+  border-bottom-width: 56rpx;
+}
+
+.map-compass {
+  position: absolute;
+  right: 28rpx;
+  bottom: 52rpx;
+  width: 124rpx;
+  height: 124rpx;
+  opacity: 0.58;
+  z-index: 0;
+}
+
+.map-compass-ring {
+  position: absolute;
+  inset: 18rpx;
+  border: 3rpx dashed #9a6a36;
+  border-radius: 999rpx;
+}
+
+.map-compass-n {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  color: #9a6a36;
+  font-size: 18rpx;
+  font-weight: 700;
+}
+
+.map-compass-diamond {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+}
+
+.diamond-top {
+  border-left: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+  border-bottom: 50rpx solid #9a6a36;
+  transform: translate(-50%, -80rpx);
+}
+
+.diamond-right {
+  border-top: 16rpx solid transparent;
+  border-bottom: 16rpx solid transparent;
+  border-left: 50rpx solid #9a6a36;
+  transform: translate(22rpx, -50%);
+}
+
+.diamond-bottom {
+  border-left: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+  border-top: 50rpx solid #9a6a36;
+  transform: translate(-50%, 22rpx);
+}
+
+.diamond-left {
+  border-top: 16rpx solid transparent;
+  border-bottom: 16rpx solid transparent;
+  border-right: 50rpx solid #9a6a36;
+  transform: translate(-80rpx, -50%);
+}
+
+.itinerary-empty {
+  color: #7a3e14;
+}
+
+.itinerary-modal {
+  text-align: center;
+}
+
+.itinerary-modal-icon {
+  font-size: 56rpx;
+}
+
+.itinerary-modal-title {
+  margin-top: 12rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.itinerary-modal-text {
+  margin: 20rpx 0 28rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.itinerary-modal-actions {
+  display: flex;
+}
+
+.itinerary-cancel,
+.itinerary-confirm {
+  flex: 1;
+}
+
+.itinerary-cancel {
+  margin-right: 14rpx;
+}

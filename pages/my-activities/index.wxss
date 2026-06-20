@@ -1,0 +1,51 @@
+.my-activity {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+}
+
+.my-activity-badge {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 18rpx;
+  border-radius: 24rpx;
+  color: #ffffff;
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.my-activity-main {
+  flex: 1;
+}
+
+.my-activity-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.my-activity-location {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #64748b;
+}
+
+.my-activity-status {
+  display: inline-flex;
+  margin-top: 14rpx;
+  padding: 8rpx 14rpx;
+  border-radius: 12rpx;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 18rpx;
+  font-weight: 700;
+}
+
+.my-activity-status-done {
+  background: #f1f5f9;
+  color: #64748b;
+}

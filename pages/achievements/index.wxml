@@ -1,0 +1,22 @@
+<view class="page-shell page-padding safe-bottom">
+  <view class="achievement-summary">
+    <view>
+      <view class="achievement-summary-label">已解锁成就</view>
+      <view class="achievement-summary-value">{{unlockedCount}} <text class="achievement-summary-total">/ {{achievements.length}}</text></view>
+    </view>
+    <view class="achievement-summary-icon">🏆</view>
+  </view>
+
+  <view class="two-col-grid">
+    <view wx:for="{{achievements}}" wx:key="id" class="two-col-item">
+      <view class="card achievement-list-card">
+        <image class="achievement-list-image {{item.date === '--' ? 'achievement-list-image-muted' : ''}}" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="achievement-list-title">{{item.name}}</view>
+        <view class="achievement-list-desc line-clamp-2">{{item.description}}</view>
+        <view class="achievement-list-status {{item.date === '--' ? 'achievement-list-status-muted' : ''}}">
+          {{item.date === '--' ? '未解锁' : (item.date + ' 解锁')}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

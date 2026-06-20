@@ -1,0 +1,19 @@
+<view class="page-shell page-padding safe-bottom">
+  <block wx:if="{{activities.length}}">
+    <view wx:for="{{activities}}" wx:key="id" class="my-activity card-soft" data-id="{{item.id}}" bindtap="openActivity">
+      <view class="my-activity-badge" style="background: {{item.color}};">🌿</view>
+      <view class="my-activity-main">
+        <view class="my-activity-title">{{item.title}}</view>
+        <view class="my-activity-location">{{item.location}}</view>
+        <view class="my-activity-status {{item.isCompleted ? 'my-activity-status-done' : ''}}">
+          {{item.isCompleted ? '已完成' : '已报名'}}
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view wx:else class="empty-state">
+    <text class="empty-emoji">🌱</text>
+    <view>你还没有参加过公益活动，去“绿色行”里报名一场吧。</view>
+  </view>
+</view>

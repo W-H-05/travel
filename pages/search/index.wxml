@@ -1,0 +1,29 @@
+<view class="page-shell page-padding safe-bottom">
+  <view class="search-bar">
+    <text class="search-icon">🔎</text>
+    <input class="search-input" placeholder="搜索你的下一站目的地..." value="{{query}}" bindinput="handleInput" />
+    <text wx:if="{{query}}" class="search-clear" bindtap="clearQuery">✕</text>
+  </view>
+
+  <view wx:if="{{!query}}" class="empty-state">
+    <text class="empty-emoji">🔎</text>
+    <view>输入关键词开始搜索</view>
+  </view>
+
+  <view wx:if="{{query && !results.length}}" class="empty-state">
+    <text class="empty-emoji">🧭</text>
+    <view>没有找到匹配的景点</view>
+  </view>
+
+  <view wx:if="{{results.length}}" class="two-col-grid">
+    <view wx:for="{{results}}" wx:key="id" class="two-col-item">
+      <view class="card search-card" data-id="{{item.id}}" bindtap="openDestination">
+        <image class="search-card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="search-card-body">
+          <view class="search-card-title">{{item.name}}</view>
+          <view class="search-card-region">{{item.region}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,28 @@
+<view class="page-shell safe-bottom">
+  <view class="green-hero">
+    <view class="green-hero-title">绿色行 · 公益计划</view>
+    <view class="green-hero-text">让每一次旅行都顺手为自然多做一点点好事。</view>
+  </view>
+
+  <view class="page-padding">
+    <view class="section-head">
+      <text class="section-title">当前招募中</text>
+      <text class="tag">成都 · 当前城市</text>
+    </view>
+
+    <view wx:for="{{activities}}" wx:key="id" class="green-item card-soft" data-id="{{item.id}}" bindtap="openActivity">
+      <view class="green-badge" style="background: {{item.color}};">🌿</view>
+      <view class="green-main">
+        <view class="green-title">{{item.title}}</view>
+        <view class="green-location">{{item.location}}</view>
+        <view class="green-points">+{{item.points}} 绿色积分</view>
+      </view>
+      <view class="green-more">查看详情</view>
+    </view>
+
+    <view class="green-cta card-soft">
+      <view class="green-cta-text">没有找到心仪的活动？也可以发起自己的环保行动。</view>
+      <view class="green-cta-link">申请发起公益活动</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,72 @@
+<view class="page-shell safe-bottom friends-page">
+  <achievement-popup visible="{{achievementPopupVisible}}" achievement="{{achievementPopup}}" bind:close="handleAchievementClose"></achievement-popup>
+
+  <view class="friends-tabs">
+    <view class="friends-tab {{activeTab === 'hall' ? 'friends-tab-active' : ''}}" data-tab="hall" bindtap="switchTab" hover-class="tap-scale">大厅</view>
+    <view class="friends-tab {{activeTab === 'mine' ? 'friends-tab-active' : ''}}" data-tab="mine" bindtap="switchTab" hover-class="tap-scale">我的发布</view>
+  </view>
+
+  <view wx:if="{{activeTab === 'hall'}}" class="page-padding friends-filters">
+    <view class="friends-filter-block">
+      <view class="friends-filter-label">性别筛选</view>
+      <view class="friends-chip-row">
+        <view wx:for="{{genders}}" wx:key="*this" class="friends-chip {{genderFilter === item ? 'friends-chip-active' : ''}}" data-value="{{item}}" bindtap="switchGender" hover-class="tap-scale">{{item}}</view>
+      </view>
+    </view>
+    <view class="friends-filter-block">
+      <view class="friends-filter-label">年龄阶段</view>
+      <view class="friends-chip-row">
+        <view wx:for="{{ages}}" wx:key="*this" class="friends-chip {{ageFilter === item ? 'friends-chip-active' : ''}}" data-value="{{item}}" bindtap="switchAge" hover-class="tap-scale">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-padding">
+    <view wx:if="{{!visibleBuddies.length}}" class="empty-state">
+      <text class="empty-emoji">🤝</text>
+      <view>{{activeTab === 'mine' ? '你还没有发布找搭子信息' : '暂时没有符合条件的搭子'}}</view>
+    </view>
+
+    <view wx:for="{{visibleBuddies}}" wx:key="id" class="friends-card card">
+      <view class="friends-card-top">
+        <view class="friends-card-user">
+          <image class="friends-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view>
+            <view class="friends-name">{{item.name}} · {{item.age}}岁</view>
+            <view class="friends-hobbies">兴趣：{{item.hobbies}}</view>
+          </view>
+        </view>
+        <view wx:if="{{item.gender !== '保密'}}" class="friends-gender {{item.gender === '男' ? 'friends-gender-male' : 'friends-gender-female'}}">{{item.gender}}</view>
+      </view>
+      <view class="friends-desc">“{{item.desc}}”</view>
+
+      <view wx:if="{{!item.isMine}}" class="friends-actions">
+        <view class="ui-btn ui-btn-primary ui-btn-compact friends-action-primary {{item.requested ? 'friends-action-disabled ui-btn-disabled' : ''}}" data-id="{{item.id}}" bindtap="sendRequest" hover-class="tap-scale">
+          {{item.requested ? '已发送请求' : '想搭伴'}}
+        </view>
+        <view class="ui-btn ui-btn-outline ui-btn-compact friends-action-outline" data-wxid="{{item.wx}}" bindtap="showWechat" hover-class="tap-scale">加微信</view>
+      </view>
+
+      <view wx:if="{{item.isMine}}" class="ui-btn ui-btn-danger ui-btn-compact friends-delete" data-id="{{item.id}}" bindtap="deleteMinePost" hover-class="tap-scale">删除发布</view>
+    </view>
+  </view>
+
+  <view class="ui-btn ui-btn-primary ui-btn-circle friends-fab animate-float" bindtap="openPublish" hover-class="tap-scale">+</view>
+
+  <view wx:if="{{showPublishModal}}" class="modal-mask" bindtap="closePublish"></view>
+  <view wx:if="{{showPublishModal}}" class="publish-panel">
+    <view class="publish-title">发布找搭子</view>
+    <input class="publish-input" placeholder="我的兴趣爱好，例如摄影、徒步、咖啡" placeholder-class="publish-input-placeholder" value="{{newHobbies}}" bindinput="handleHobbiesInput" />
+    <textarea class="publish-textarea" placeholder="说说你的旅行计划，找到节奏合拍的人" value="{{newDesc}}" bindinput="handleDescInput"></textarea>
+    <view class="ui-btn ui-btn-primary ui-btn-block" bindtap="publishPost" hover-class="tap-scale">确认发布</view>
+  </view>
+
+  <view wx:if="{{showWxModal}}" class="modal-mask" bindtap="closeWechatModal"></view>
+  <view wx:if="{{showWxModal}}" class="modal-panel wx-modal">
+    <view class="wx-modal-icon">💬</view>
+    <view class="wx-modal-title">添加微信</view>
+    <view class="wx-modal-text">复制下面的微信号后，去微信中添加好友。</view>
+    <view class="wx-modal-code">{{showWxModal}}</view>
+    <view class="ui-btn ui-btn-primary ui-btn-block" data-wxid="{{showWxModal}}" bindtap="copyWechat" hover-class="tap-scale">复制微信号</view>
+  </view>
+</view>

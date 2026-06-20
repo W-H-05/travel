@@ -1,0 +1,88 @@
+.green-hero {
+  padding: 56rpx 32rpx 64rpx;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(160deg, #14b8a6 0%, #0f766e 100%);
+}
+
+.green-hero-title {
+  font-size: 42rpx;
+  font-weight: 700;
+}
+
+.green-hero-text {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  opacity: 0.82;
+}
+
+.green-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+}
+
+.green-badge {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 20rpx;
+  border-radius: 28rpx;
+  color: #ffffff;
+  font-size: 38rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.green-main {
+  flex: 1;
+}
+
+.green-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.green-location {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #94a3b8;
+}
+
+.green-points {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #f97316;
+  font-weight: 700;
+}
+
+.green-more {
+  padding: 16rpx 20rpx;
+  border-radius: 20rpx;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.green-cta {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  text-align: center;
+  border-style: dashed;
+}
+
+.green-cta-text {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+.green-cta-link {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #0f766e;
+  text-decoration: underline;
+}

@@ -1,0 +1,69 @@
+.rank-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28rpx;
+}
+
+.rank-tab {
+  margin: 0 20rpx;
+  padding: 10rpx 8rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #94a3b8;
+  border-bottom: 4rpx solid transparent;
+}
+
+.rank-tab-active {
+  color: #0f766e;
+  border-bottom-color: #14b8a6;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  margin-bottom: 18rpx;
+}
+
+.rank-no {
+  width: 44rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #cbd5e1;
+  text-align: center;
+}
+
+.rank-no-hot {
+  color: #0f766e;
+}
+
+.rank-image {
+  width: 132rpx;
+  height: 132rpx;
+  margin: 0 18rpx;
+  border-radius: 22rpx;
+  flex-shrink: 0;
+}
+
+.rank-content {
+  flex: 1;
+}
+
+.rank-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.rank-region {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #0f766e;
+}
+
+.rank-desc {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #64748b;
+  line-height: 1.6;
+}

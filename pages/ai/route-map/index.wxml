@@ -1,0 +1,81 @@
+<view class="route-map-page">
+  <!-- 3D 地图 -->
+  <map
+    id="routeMap"
+    class="route-map"
+    latitude="{{centerLat}}"
+    longitude="{{centerLng}}"
+    scale="{{scale}}"
+    skew="{{skew}}"
+    rotate="{{rotate}}"
+    markers="{{markers}}"
+    polyline="{{polyline}}"
+    include-points="{{includePoints}}"
+    enable-3D="{{true}}"
+    enable-rotate="{{true}}"
+    enable-skew="{{true}}"
+    show-compass="{{true}}"
+    show-scale="{{true}}"
+    show-location="{{false}}"
+    bindmarkertap="onMarkerTap"
+    bindregionchange="onRegionChange"
+    bindupdated="onMapReady"
+  >
+  </map>
+
+  <!-- 3D 视角控制按钮 -->
+  <view class="map-controls">
+    <view class="map-ctrl-btn" bindtap="toggle3D" hover-class="tap-scale">
+      <text>{{is3D ? '2D' : '3D'}}</text>
+    </view>
+    <view class="map-ctrl-btn" bindtap="resetView" hover-class="tap-scale">
+      <text>⟳</text>
+    </view>
+  </view>
+
+  <!-- 动画进度覆盖层 -->
+  <view class="route-anim-overlay" wx:if="{{animating}}">
+    <view class="route-anim-progress">
+      <view class="route-anim-bar" style="width: {{animProgress}}%"></view>
+    </view>
+    <view class="route-anim-text">正在绘制路线 {{animProgress}}%</view>
+  </view>
+
+  <!-- 当前选中点信息 -->
+  <view class="map-info-sheet" wx:if="{{activeMarker && !animating}}">
+    <view class="map-info-card">
+      <view class="map-info-time">{{activeMarker.time}}</view>
+      <view class="map-info-title">{{activeMarker.title}}</view>
+      <view class="map-info-desc">{{activeMarker.desc}}</view>
+    </view>
+  </view>
+
+  <!-- 底部路线列表 -->
+  <view class="route-timeline-shell" wx:if="{{!animating}}">
+    <view class="route-timeline-title">
+      <text class="route-timeline-icon">🗺️</text>
+      <text>{{dayTitle}}</text>
+      <view class="route-timeline-badge" wx:if="{{routeStats}}">{{routeStats}}</view>
+    </view>
+    <scroll-view class="route-timeline-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+      <view
+        wx:for="{{routePoints}}"
+        wx:key="index"
+        class="timeline-item {{activeMarkerIndex === index ? 'timeline-item-active' : ''}}"
+        data-index="{{index}}"
+        bindtap="onTimelineTap"
+        hover-class="tap-scale"
+      >
+        <view class="timeline-dot-shell">
+          <view class="timeline-dot {{index === 0 ? 'timeline-dot-start' : ''}} {{index === routePoints.length - 1 ? 'timeline-dot-end' : ''}}"></view>
+          <view class="timeline-line" wx:if="{{index < routePoints.length - 1}}"></view>
+        </view>
+        <view class="timeline-content">
+          <view class="timeline-time">{{item.time}}</view>
+          <view class="timeline-label">{{item.label}}</view>
+          <view class="timeline-desc" wx:if="{{item.desc}}">{{item.desc}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

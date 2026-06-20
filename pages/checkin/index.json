@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "achievement-popup": "../../components/achievement-popup/index"
+  }
+}

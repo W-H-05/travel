@@ -1,0 +1,22 @@
+<view class="page-shell page-padding safe-bottom">
+  <block wx:if="{{checkIns.length}}">
+    <view wx:for="{{checkIns}}" wx:key="id" class="card footprint-card">
+      <view class="footprint-image-wrap">
+        <image wx:if="{{item.image}}" class="footprint-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view wx:else class="footprint-placeholder">📷</view>
+      </view>
+      <view class="footprint-body">
+        <view class="footprint-top">
+          <view class="footprint-location">📍 {{item.location}}</view>
+          <view class="footprint-date">{{item.date}}</view>
+        </view>
+        <view class="footprint-text">{{item.mood || '没有留下文字，但风景已经在心里。'}}</view>
+      </view>
+    </view>
+  </block>
+
+  <view wx:else class="empty-state">
+    <text class="empty-emoji">👣</text>
+    <view>你还没有留下打卡记录，去首页点亮第一条足迹吧。</view>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<view class="page-shell page-padding safe-bottom">
+  <view wx:if="{{favorites.length}}" class="two-col-grid">
+    <view wx:for="{{favorites}}" wx:key="id" class="two-col-item">
+      <view class="card fav-card" data-id="{{item.id}}" bindtap="openDestination">
+        <image class="fav-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="fav-tag">{{item.region}}</view>
+        <view class="fav-body">
+          <view class="fav-title">{{item.name}}</view>
+          <view class="fav-desc line-clamp-2">{{item.description}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty-state">
+    <text class="empty-emoji">⭐</text>
+    <view>暂时没有收藏景点，去发现更多想去的地方吧。</view>
+  </view>
+</view>

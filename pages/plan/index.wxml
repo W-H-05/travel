@@ -1,0 +1,33 @@
+<view class="page-shell page-padding safe-bottom">
+  <view class="plan-head">
+    <view class="section-title">我的行程规划</view>
+    <view class="pill plan-count">{{plans.length}} 项</view>
+  </view>
+
+  <view wx:if="{{!plans.length}}" class="empty-state">
+    <text class="empty-emoji">🗺️</text>
+    <view>还没有旅行计划，去 AI 助手里让它帮你生成一份吧。</view>
+  </view>
+
+  <view wx:else class="timeline">
+    <view wx:for="{{plans}}" wx:key="id" class="timeline-item" data-id="{{item.id}}" bindtap="openPlan">
+      <view class="timeline-dot"></view>
+      <view class="card-soft timeline-card">
+        <view class="timeline-top">
+          <view class="timeline-location">{{item.location}}</view>
+          <view class="timeline-time">{{item.time}}</view>
+        </view>
+        <view class="timeline-title">{{item.title}}</view>
+        <view class="timeline-acts">
+          <block wx:for="{{item.activities}}" wx:key="index">
+            <view wx:if="{{index < 3}}" class="timeline-act">
+              <view class="timeline-act-dot"></view>
+              <view class="timeline-act-text">{{item}}</view>
+            </view>
+          </block>
+        </view>
+        <view wx:if="{{item.activities.length > 3}}" class="timeline-more">查看更多完整行程</view>
+      </view>
+    </view>
+  </view>
+</view>

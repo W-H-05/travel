@@ -1,0 +1,47 @@
+<view wx:if="{{destination}}" class="page-shell detail-page safe-bottom">
+  <achievement-popup visible="{{achievementPopupVisible}}" achievement="{{achievementPopup}}" bind:close="handleAchievementClose"></achievement-popup>
+
+  <image class="detail-cover" src="{{destination.image}}" mode="aspectFill"></image>
+  <view class="detail-head card animate-fade-up">
+    <view class="detail-title">{{destination.name}}</view>
+    <view class="detail-region">{{destination.region}}</view>
+    <view class="detail-tabs">
+      <view class="detail-tab {{activeSection === 'info' ? 'detail-tab-active' : ''}}" data-key="info" bindtap="switchSection" hover-class="tap-fade">详情介绍</view>
+      <view class="detail-tab {{activeSection === 'community' ? 'detail-tab-active' : ''}}" data-key="community" bindtap="switchSection" hover-class="tap-fade">达人分享</view>
+    </view>
+  </view>
+
+  <view class="page-padding detail-body">
+    <view wx:if="{{activeSection === 'info'}}">
+      <view class="detail-desc">{{destination.description}} 这里空气清新、节奏舒服，非常适合安排一场更轻松、更注重体验感的旅行。</view>
+      <view class="detail-gallery">
+        <image wx:for="{{gallery}}" wx:key="*this" class="detail-gallery-image" src="{{item}}" mode="aspectFill"></image>
+      </view>
+      <view class="section-title detail-section-title">游玩建议</view>
+      <view class="detail-tip-list card-soft">
+        <view class="detail-tip-item">最佳季节：春秋两季体验更舒适</view>
+        <view class="detail-tip-item">建议停留：1 至 3 天，节奏更从容</view>
+        <view class="detail-tip-item">出行提醒：自备水杯和环保袋，更适合绿色旅行</view>
+      </view>
+    </view>
+
+    <view wx:if="{{activeSection === 'community'}}" class="review-list">
+      <view wx:for="{{communityReviews}}" wx:key="name" class="review-item">
+        <image class="review-avatar" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="review-body">
+          <view class="review-top">
+            <text class="review-name">{{item.name}}</text>
+            <text class="review-level">{{item.level}}</text>
+          </view>
+          <view class="review-content">{{item.content}}</view>
+          <image class="review-photo" src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="fixed-bottom detail-actions">
+    <view class="ui-btn ui-btn-outline detail-fav {{isFavorited ? 'detail-fav-active' : ''}}" bindtap="toggleFavorite" hover-class="tap-scale">{{isFavorited ? '已收藏' : '收藏景点'}}</view>
+    <view class="ui-btn ui-btn-primary detail-add" bindtap="addToPlan" hover-class="tap-scale">添加到行程</view>
+  </view>
+</view>

@@ -1,0 +1,74 @@
+<view wx:if="{{plan}}" class="page-shell itinerary-page safe-bottom">
+  <view class="itinerary-top">
+    <view class="itinerary-head">
+      <view class="itinerary-title">{{plan.location}} 寻宝路线</view>
+      <view class="itinerary-subtitle">{{plan.title}} • {{plan.time}}</view>
+    </view>
+    <view class="itinerary-delete" bindtap="openDeleteConfirm" hover-class="tap-scale">🗑</view>
+  </view>
+
+  <view class="page-padding">
+    <view class="itinerary-banner">
+      <view class="itinerary-banner-title">
+        <text class="itinerary-banner-icon">🗺️</text>
+        <text>专属探险地图</text>
+      </view>
+      <view class="itinerary-banner-text">沿着寻宝路线，发现每个景点的独特惊喜</view>
+    </view>
+
+    <view wx:if="{{activityCards.length}}" class="map-stage" style="height: {{stageHeight}}rpx;">
+      <view class="map-mountain mountain-top-left">
+        <view class="peak peak-large"></view>
+        <view class="peak peak-small"></view>
+      </view>
+      <view class="map-mountain mountain-mid-right">
+        <view class="peak peak-large"></view>
+        <view class="peak peak-small"></view>
+      </view>
+      <view class="map-mountain mountain-bottom-left">
+        <view class="peak peak-large"></view>
+        <view class="peak peak-small"></view>
+      </view>
+
+      <view wx:for="{{pathSegments}}" wx:key="id" class="map-path-segment" style="{{item.style}}"></view>
+
+      <view wx:for="{{activityCards}}" wx:key="id" class="map-node" style="{{item.wrapperStyle}}">
+        <view class="map-pin {{item.isLast ? 'map-pin-last' : ''}}">
+          <text wx:if="{{!item.isLast}}" class="map-pin-icon">{{item.icon}}</text>
+          <text wx:else class="map-pin-cross">✕</text>
+        </view>
+        <view class="map-card" style="{{item.cardStyle}}">
+          <view class="map-step">{{item.step}}</view>
+          <view class="map-time" wx:if="{{item.time}}">{{item.time}}</view>
+          <view class="map-desc">{{item.desc}}</view>
+          <view class="map-tag" style="{{item.tagStyle}}">{{item.tag}}</view>
+        </view>
+      </view>
+
+      <view class="map-compass">
+        <view class="map-compass-n">N</view>
+        <view class="map-compass-ring"></view>
+        <view class="map-compass-diamond diamond-top"></view>
+        <view class="map-compass-diamond diamond-right"></view>
+        <view class="map-compass-diamond diamond-bottom"></view>
+        <view class="map-compass-diamond diamond-left"></view>
+      </view>
+    </view>
+
+    <view wx:else class="empty-state itinerary-empty">
+      <view class="empty-emoji">🧭</view>
+      <view>暂无详细行程</view>
+    </view>
+  </view>
+
+  <view wx:if="{{showDeleteConfirm}}" class="modal-mask" bindtap="closeDeleteConfirm"></view>
+  <view wx:if="{{showDeleteConfirm}}" class="modal-panel itinerary-modal">
+    <view class="itinerary-modal-icon">🗑️</view>
+    <view class="itinerary-modal-title">删除行程</view>
+    <view class="itinerary-modal-text">确定要删除这条旅行规划吗？删除后无法恢复。</view>
+    <view class="itinerary-modal-actions">
+      <view class="ui-btn ui-btn-secondary itinerary-cancel" bindtap="closeDeleteConfirm" hover-class="tap-scale">取消</view>
+      <view class="ui-btn ui-btn-danger itinerary-confirm" bindtap="confirmDelete" hover-class="tap-scale">确认删除</view>
+    </view>
+  </view>
+</view>

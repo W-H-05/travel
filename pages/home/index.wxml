@@ -1,0 +1,87 @@
+<view class="page-shell safe-bottom">
+  <view class="home-search-wrap">
+    <view class="home-search card-soft" bindtap="openSearch">
+      <text class="home-search-icon">🔎</text>
+      <text class="home-search-text">搜索你的下一站目的地...</text>
+    </view>
+  </view>
+
+  <view class="page-padding home-main">
+    <view class="card hero-card">
+      <swiper class="hero-swiper" circular autoplay interval="3000" bindchange="handleBannerChange">
+        <swiper-item wx:for="{{banners}}" wx:key="id">
+          <view class="hero-slide" data-id="{{item.id}}" bindtap="openDestination">
+            <image class="hero-image" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="hero-mask"></view>
+            <view class="hero-text">
+              <view class="hero-title">{{item.name}}</view>
+              <view class="hero-region">{{item.region}}</view>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="hero-dots">
+        <view wx:for="{{banners}}" wx:key="id" class="hero-dot {{index === currentBanner ? 'hero-dot-active' : ''}}"></view>
+      </view>
+    </view>
+
+    <view class="shortcut-row">
+      <view class="shortcut-item" bindtap="openRanking">
+        <view class="shortcut-icon">🏆</view>
+        <view class="shortcut-label">热门榜单</view>
+      </view>
+      <view class="shortcut-item" bindtap="openCheckIn">
+        <view class="shortcut-icon">📸</view>
+        <view class="shortcut-label">旅行打卡</view>
+      </view>
+      <view class="shortcut-item" bindtap="openPhotography">
+        <view class="shortcut-icon">🖼️</view>
+        <view class="shortcut-label">摄影长廊</view>
+      </view>
+      <view class="shortcut-item" bindtap="openFriends">
+        <view class="shortcut-icon">🤝</view>
+        <view class="shortcut-label">找搭子</view>
+      </view>
+      <view class="shortcut-item" bindtap="openGreenTravel">
+        <view class="shortcut-icon">🌱</view>
+        <view class="shortcut-label">绿色行</view>
+      </view>
+    </view>
+
+    <view class="card community-card">
+      <view class="section-head">
+        <view class="section-title-wrap">
+          <text class="section-mark">✦</text>
+          <text class="section-title">社区推荐</text>
+        </view>
+        <view class="pill section-more" bindtap="openCommunity">查看更多</view>
+      </view>
+      <scroll-view scroll-x class="community-scroll">
+        <view class="community-scroll-inner">
+          <view wx:for="{{communityPosts}}" wx:key="id" class="community-cover" data-id="{{item.id}}" bindtap="openPost">
+            <image class="community-cover-image" src="{{item.img}}" mode="aspectFill"></image>
+            <view class="community-cover-mask"></view>
+            <view class="community-cover-title line-clamp-2">{{item.title}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="section-head plain-head">
+      <text class="section-title">热门推荐</text>
+    </view>
+    <view class="two-col-grid">
+      <view wx:for="{{hotDestinations}}" wx:key="id" class="two-col-item">
+        <view class="card hot-card" data-id="{{item.id}}" bindtap="openDestination">
+          <image class="hot-card-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="hot-card-body">
+            <view class="hot-card-title">{{item.name}}</view>
+            <view class="hot-card-region">{{item.region}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{hasMore}}" class="ui-btn ui-btn-secondary ui-btn-pill load-more-btn" bindtap="handleLoadMore" hover-class="tap-scale">加载更多推荐</view>
+  </view>
+</view>

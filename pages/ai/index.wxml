@@ -1,0 +1,188 @@
+<view class="ai-page">
+  <achievement-popup visible="{{achievementPopupVisible}}" achievement="{{achievementPopup}}" bind:close="handleAchievementClose"></achievement-popup>
+
+  <!-- 顶部导航 -->
+  <view class="ai-header-shell">
+    <view class="ai-header">
+      <view class="ai-avatar">
+        <text class="ai-avatar-icon">🌿</text>
+      </view>
+      <view class="ai-header-copy">
+        <view class="ai-title">小绿 · 旅行助手</view>
+        <view class="ai-subtitle">贴心规划，温暖陪伴</view>
+      </view>
+      <view class="ai-mode-tag {{aiMode === '本地引擎' || aiMode === '本地兜底' ? 'ai-mode-tag-local' : 'ai-mode-tag-cloud'}}">
+        <view class="ai-mode-dot"></view>
+        <text>{{aiMode}}</text>
+      </view>
+    </view>
+    <view wx:if="{{lastCloudError}}" class="ai-error-tip">
+      <text class="ai-error-icon">💡</text>
+      <text>{{lastCloudError}}</text>
+    </view>
+  </view>
+
+  <!-- 聊天区域 -->
+  <scroll-view class="ai-scroll" scroll-y scroll-top="{{scrollTop}}" enhanced show-scrollbar="{{false}}">
+    <view class="ai-list">
+      <block wx:for="{{messages}}" wx:key="index">
+        <view id="msg-{{index}}" class="bubble-row {{item.role === 'user' ? 'bubble-row-user' : 'bubble-row-ai'}}">
+          <!-- AI 头像（左侧） -->
+          <view wx:if="{{item.role === 'ai'}}" class="bubble-avatar bubble-avatar-ai">
+            <text>🌿</text>
+          </view>
+
+          <view class="bubble {{item.role === 'user' ? 'bubble-user' : 'bubble-ai'}} {{item.type === 'multiPlan' || item.type === 'plan' ? 'bubble-plan' : ''}} {{item.type === 'packing' ? 'bubble-packing' : ''}}">
+            <!-- 消息文本（支持打字机流式 + 换行保留） -->
+            <view class="bubble-text" wx:if="{{item.role === 'ai' && item.displayContent !== undefined}}">{{item.displayContent}}</view>
+            <view class="bubble-text" wx:elif="{{item.role === 'ai' && item.content}}">{{item.content}}</view>
+            <view class="bubble-text" wx:else>{{item.content}}</view>
+
+            <!-- 打字光标 -->
+            <view wx:if="{{streamingMsgIndex === index}}" class="typing-cursor">
+              <view class="typing-cursor-dot"></view>
+            </view>
+
+            <!-- 多方案选择卡片 -->
+            <view wx:if="{{item.type === 'multiPlan' && item.planOptions && item.planOptions.length && streamingMsgIndex !== index}}" class="multi-plan-shell">
+              <view class="variant-tabs">
+                <view
+                  wx:for="{{item.planOptions}}"
+                  wx:for-item="variant"
+                  wx:for-index="vi"
+                  wx:key="variantKey"
+                  class="variant-tab {{item.activeVariant === vi ? 'variant-tab-active' : ''}}"
+                  data-msg-index="{{index}}"
+                  data-variant-index="{{vi}}"
+                  bindtap="switchVariant"
+                  hover-class="tap-scale"
+                >
+                  <view class="variant-tab-icon">{{variant.variantIcon}}</view>
+                  <view class="variant-tab-label">{{variant.variantLabel}}</view>
+                </view>
+              </view>
+
+              <view wx:for="{{item.planOptions}}" wx:for-item="variant" wx:for-index="vi" wx:key="variantKey">
+                <view wx:if="{{item.activeVariant === vi}}" class="variant-detail">
+                  <view class="variant-desc">{{variant.variantDesc}}</view>
+
+                  <view wx:for="{{variant.days}}" wx:for-item="day" wx:for-index="di" wx:key="id" class="plan-card card-soft">
+                    <view class="plan-card-top">
+                      <view class="plan-card-title">{{day.title}}</view>
+                      <view class="plan-card-time">{{day.time}}</view>
+                    </view>
+                    <view class="plan-card-location">
+                      <text class="plan-card-loc-icon">📍</text>
+                      <text>{{day.location}}</text>
+                    </view>
+                    <view wx:for="{{day.activities}}" wx:key="index" wx:for-item="activity" class="plan-card-step">
+                      <view class="plan-card-dot"></view>
+                      <view class="plan-card-step-text">{{activity}}</view>
+                    </view>
+                    <!-- 底部操作 -->
+                    <view class="plan-card-footer">
+                      <view
+                        class="plan-card-action-link"
+                        data-msg-index="{{index}}"
+                        data-variant-index="{{vi}}"
+                        data-day-index="{{di}}"
+                        bindtap="viewDayRoute"
+                        hover-class="tap-scale"
+                      >
+                        <text class="plan-card-action-icon">🗺️</text>
+                        <text>查看路线</text>
+                      </view>
+                      <view
+                        class="plan-card-action-link plan-card-action-primary"
+                        data-msg-index="{{index}}"
+                        data-variant-index="{{vi}}"
+                        data-day-index="{{di}}"
+                        bindtap="importDay"
+                        hover-class="tap-scale"
+                      >
+                        <text class="plan-card-action-icon">📥</text>
+                        <text>导入这天</text>
+                      </view>
+                    </view>
+                  </view>
+
+                  <view class="variant-import-btn">
+                    <view
+                      class="ui-btn ui-btn-soft ui-btn-full"
+                      data-msg-index="{{index}}"
+                      data-variant-index="{{vi}}"
+                      bindtap="importPlan"
+                      hover-class="tap-scale"
+                    >一键导入「{{variant.variantLabel}}」全部 {{variant.days.length}} 天</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <!-- 兼容旧版单方案展示 -->
+            <view wx:if="{{item.type === 'plan' && item.planData && !item.planOptions && streamingMsgIndex !== index}}" class="plan-list">
+              <view wx:for="{{item.planData}}" wx:key="id" wx:for-item="plan" class="plan-preview card-soft">
+                <view class="plan-preview-top">
+                  <view class="plan-preview-title">{{plan.title}}</view>
+                  <view class="plan-preview-time">{{plan.time}}</view>
+                </view>
+                <view class="plan-preview-location">
+                  <text class="plan-card-loc-icon">📍</text>
+                  <text>{{plan.location}}</text>
+                </view>
+                <view wx:for="{{plan.activities}}" wx:key="index" wx:for-item="activity" class="plan-preview-step">
+                  <view class="plan-preview-dot"></view>
+                  <view class="plan-preview-step-text">{{activity}}</view>
+                </view>
+              </view>
+              <view class="ui-btn ui-btn-soft ui-btn-compact import-btn" data-index="{{index}}" bindtap="importPlan" hover-class="tap-scale">一键导入计划</view>
+            </view>
+
+            <!-- 打包清单展示 -->
+            <view wx:if="{{item.type === 'packing' && item.packingList && streamingMsgIndex !== index}}" class="packing-shell">
+              <view class="packing-content">{{item.packingList}}</view>
+            </view>
+          </view>
+
+          <!-- 用户头像（右侧） -->
+          <view wx:if="{{item.role === 'user'}}" class="bubble-avatar bubble-avatar-user">
+            <text>👤</text>
+          </view>
+        </view>
+      </block>
+
+      <!-- 加载状态 -->
+      <view wx:if="{{loading && streamingMsgIndex < 0}}" class="bubble-row bubble-row-ai">
+        <view class="bubble-avatar bubble-avatar-ai">
+          <text>🌿</text>
+        </view>
+        <view class="bubble bubble-ai bubble-loading">
+          <view class="loading-dots">
+            <view class="loading-dot"></view>
+            <view class="loading-dot"></view>
+            <view class="loading-dot"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入栏 -->
+  <view class="ai-input-shell">
+    <view class="ai-input-bar">
+      <input
+        class="ai-input"
+        placeholder="想去哪里？告诉我吧~"
+        value="{{inputValue}}"
+        bindinput="handleInput"
+        confirm-type="send"
+        bindconfirm="handleConfirm"
+        maxlength="300"
+        adjust-position="{{false}}"
+      />
+      <view class="ai-send-btn {{inputValue ? 'ai-send-active' : ''}}" bindtap="handleSend" hover-class="tap-scale">
+        <text class="ai-send-icon">✈</text>
+      </view>
+    </view>
+  </view>
+</view>

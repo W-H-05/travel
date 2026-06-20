@@ -1,0 +1,38 @@
+<view wx:if="{{post}}" class="page-shell community-detail-page safe-bottom">
+  <view class="community-detail-author">
+    <view class="community-detail-author-left">
+      <image class="community-detail-avatar" src="{{post.avatar}}" mode="aspectFill"></image>
+      <text class="community-detail-name">{{post.author}}</text>
+    </view>
+    <view class="community-detail-follow">关注</view>
+  </view>
+
+  <image class="community-detail-image" src="{{post.img}}" mode="aspectFill"></image>
+
+  <view class="page-padding community-detail-body">
+    <view class="community-detail-title">{{post.title}}</view>
+    <view class="community-detail-text">{{post.content}}</view>
+    <view class="community-detail-meta">
+      <text>发布于 2026-03-18</text>
+      <text>未经作者授权，禁止转载</text>
+    </view>
+  </view>
+
+  <view class="fixed-bottom community-detail-bar">
+    <view class="community-detail-input">说点什么...</view>
+    <view class="community-detail-actions">
+      <view class="community-action">
+        <text class="community-action-icon">❤</text>
+        <text>{{post.likes}}</text>
+      </view>
+      <view class="community-action">
+        <text class="community-action-icon">⭐</text>
+        <text>收藏</text>
+      </view>
+      <view class="community-action">
+        <text class="community-action-icon">💬</text>
+        <text>评论</text>
+      </view>
+    </view>
+  </view>
+</view>

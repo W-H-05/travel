@@ -1,0 +1,26 @@
+<view class="page-shell safe-bottom">
+  <scroll-view scroll-x class="photo-filter">
+    <view class="photo-filter-row">
+      <view wx:for="{{regions}}" wx:key="*this" class="photo-chip {{region === item ? 'photo-chip-active' : ''}}" data-region="{{item}}" bindtap="switchRegion" hover-class="tap-scale">{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <view class="page-padding">
+    <view class="two-col-grid">
+      <view wx:for="{{works}}" wx:key="id" class="two-col-item">
+        <view class="card photo-card">
+          <image class="photo-card-image" src="{{item.img}}" mode="aspectFill"></image>
+          <view class="photo-card-body">
+            <view class="photo-card-title">{{item.title}}</view>
+            <view class="photo-card-author">@{{item.author}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{!works.length}}" class="empty-state">
+      <text class="empty-emoji">🖼️</text>
+      <view>该地区暂时没有摄影作品</view>
+    </view>
+  </view>
+</view>

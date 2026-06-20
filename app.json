@@ -1,0 +1,82 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/home/index",
+    "pages/category/index",
+    "pages/ai/index",
+    "pages/ai/route-map/index",
+    "pages/plan/index",
+    "pages/profile/index",
+    "pages/detail/index",
+    "pages/ranking/index",
+    "pages/search/index",
+    "pages/green-travel/index",
+    "pages/activity-detail/index",
+    "pages/community/index",
+    "pages/community-detail/index",
+    "pages/category-detail/index",
+    "pages/checkin/index",
+    "pages/photography/index",
+    "pages/friends/index",
+    "pages/itinerary/index",
+    "pages/favorites/index",
+    "pages/my-activities/index",
+    "pages/my-footprints/index",
+    "pages/achievements/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f5faf8",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "GreenTravel Pro",
+    "backgroundColor": "#f5faf8",
+    "backgroundTextStyle": "light"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于旅行打卡时记录当前位置"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#94a3b8",
+    "selectedColor": "#0f766e",
+    "backgroundColor": "#f5faf8",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "images/tabBar/首页-gray.png",
+        "selectedIconPath": "images/tabBar/首页.png"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "分类",
+        "iconPath": "images/tabBar/分类-gray.png",
+        "selectedIconPath": "images/tabBar/分类.png"
+      },
+      {
+        "pagePath": "pages/ai/index",
+        "text": "AI助手",
+        "iconPath": "images/tabBar/Ai-gray.png",
+        "selectedIconPath": "images/tabBar/Ai.png"
+      },
+      {
+        "pagePath": "pages/plan/index",
+        "text": "规划",
+        "iconPath": "images/tabBar/规划指南-gray.png",
+        "selectedIconPath": "images/tabBar/规划指南.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "images/tabBar/我的-gray.png",
+        "selectedIconPath": "images/tabBar/我的.png"
+      }
+    ]
+  }
+}

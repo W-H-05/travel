@@ -1,0 +1,14 @@
+<view wx:if="{{visible && achievement}}">
+  <view class="achievement-popup-mask"></view>
+  <view class="achievement-popup-panel">
+    <view class="achievement-popup-halo"></view>
+    <view class="achievement-popup-star achievement-popup-star-left">✦</view>
+    <view class="achievement-popup-star achievement-popup-star-right">✦</view>
+    <image class="achievement-popup-cover" src="{{achievement.image}}" mode="aspectFill"></image>
+    <view class="achievement-popup-badge">成就达成</view>
+    <view class="achievement-popup-name">{{achievement.name}}</view>
+    <view class="achievement-popup-desc">{{achievement.description}}</view>
+    <view class="achievement-popup-date">{{achievement.date}}</view>
+    <view class="achievement-popup-btn ui-btn ui-btn-soft ui-btn-compact ui-btn-block" bindtap="handleClose" hover-class="tap-scale">继续探索</view>
+  </view>
+</view>

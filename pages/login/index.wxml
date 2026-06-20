@@ -1,0 +1,16 @@
+<view class="login-page">
+  <view class="login-card">
+    <view class="login-logo">🌿</view>
+    <view class="login-title">绿色行</view>
+    <view class="login-subtitle">开启你的绿色旅行灵感之旅</view>
+
+    <view class="ui-btn ui-btn-primary ui-btn-block login-btn" bindtap="handleWechatLogin" hover-class="tap-scale">
+      <text class="login-btn-icon">💬</text>
+      <text>微信一键登录</text>
+    </view>
+
+    <view class="ui-btn ui-btn-secondary ui-btn-block" bindtap="handleGuestBrowse" hover-class="tap-scale">先去逛逛</view>
+
+    <view class="login-agreement">登录即代表你同意《服务协议》和《隐私政策》</view>
+  </view>
+</view>

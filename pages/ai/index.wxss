@@ -1,0 +1,668 @@
+/* ==================== 页面容器 ==================== */
+
+.ai-page {
+  min-height: 100vh;
+  height: 100vh;
+  background: #f0f7f4;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================== 顶部导航 ==================== */
+
+.ai-header-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding-bottom: 8rpx;
+  background: linear-gradient(180deg, rgba(240, 247, 244, 0.99) 0%, rgba(240, 247, 244, 0.92) 80%, rgba(240, 247, 244, 0) 100%);
+}
+
+.ai-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx 16rpx;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20rpx);
+  border-bottom: 1rpx solid rgba(20, 184, 166, 0.08);
+  box-shadow: 0 8rpx 32rpx rgba(20, 184, 166, 0.06);
+}
+
+.ai-header-copy {
+  flex: 1;
+}
+
+.ai-avatar {
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 16rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4f5e9 0%, #a8e6cf 40%, #14b8a6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 20rpx rgba(20, 184, 166, 0.2);
+}
+
+.ai-avatar-icon {
+  font-size: 36rpx;
+}
+
+.ai-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.5rpx;
+}
+
+.ai-subtitle {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #94a3b8;
+}
+
+.ai-mode-tag {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  min-width: 110rpx;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.ai-mode-tag-cloud {
+  background: #ecfdf5;
+  color: #0f766e;
+}
+
+.ai-mode-tag-local {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.ai-mode-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.ai-error-tip {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin: 10rpx 24rpx 0;
+  padding: 14rpx 18rpx;
+  border-radius: 16rpx;
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 21rpx;
+  line-height: 1.5;
+}
+
+.ai-error-icon {
+  flex-shrink: 0;
+}
+
+/* ==================== 聊天区域 ==================== */
+
+.ai-scroll {
+  flex: 1;
+  padding: 24rpx;
+  padding-top: 168rpx;
+  padding-bottom: 120rpx;
+}
+
+.ai-list {
+  min-height: 100%;
+}
+
+/* ==================== 消息行 ==================== */
+
+.bubble-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 28rpx;
+  animation: msgSlideUp 380ms ease both;
+}
+
+/* AI 消息：左对齐，头像在左 */
+.bubble-row-ai {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* 用户消息：右对齐，头像在右 */
+.bubble-row-user {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+@keyframes msgSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== 聊天气泡中的头像 ==================== */
+
+.bubble-avatar {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  flex-shrink: 0;
+  box-shadow: 0 4rpx 14rpx rgba(20, 184, 166, 0.15);
+}
+
+.bubble-avatar-ai {
+  margin-right: 14rpx;
+  background: linear-gradient(135deg, #d4f5e9 0%, #b7ebd8 60%, #14b8a6 100%);
+}
+
+.bubble-avatar-user {
+  margin-left: 14rpx;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 60%, #6366f1 100%);
+  font-size: 24rpx;
+}
+
+/* ==================== 聊天气泡 ==================== */
+
+.bubble {
+  max-width: 78%;
+  padding: 22rpx 26rpx;
+  border-radius: 24rpx;
+  position: relative;
+}
+
+.bubble-plan {
+  max-width: 90%;
+}
+
+.bubble-ai {
+  background: #ffffff;
+  border-top-left-radius: 8rpx;
+  box-shadow: 0 4rpx 18rpx rgba(15, 23, 42, 0.05), 0 1rpx 3rpx rgba(15, 23, 42, 0.04);
+}
+
+.bubble-user {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  color: #ffffff;
+  border-top-right-radius: 8rpx;
+  box-shadow: 0 6rpx 22rpx rgba(20, 184, 166, 0.25);
+}
+
+.bubble-loading {
+  padding: 20rpx 28rpx;
+}
+
+/* 关键：保留换行符 */
+.bubble-text {
+  font-size: 27rpx;
+  line-height: 1.75;
+  letter-spacing: 0.3rpx;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+/* ==================== 打字光标 ==================== */
+
+.typing-cursor {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2rpx;
+  vertical-align: text-bottom;
+  height: 32rpx;
+}
+
+.typing-cursor-dot {
+  width: 4rpx;
+  height: 28rpx;
+  border-radius: 2rpx;
+  background: #14b8a6;
+  animation: cursorBlink 800ms ease infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* ==================== 加载动画 ==================== */
+
+.loading-dots {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 4rpx 0;
+}
+
+.loading-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #14b8a6;
+  opacity: 0.4;
+  animation: loadingBounce 1.2s ease infinite;
+}
+
+.loading-dot:nth-child(1) { animation-delay: 0s; }
+.loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loadingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10rpx);
+    opacity: 1;
+  }
+}
+
+/* ==================== 计划卡片（旧版兼容） ==================== */
+
+.plan-list {
+  margin-top: 18rpx;
+}
+
+.plan-preview {
+  padding: 22rpx 24rpx;
+  margin-bottom: 16rpx;
+  background: linear-gradient(180deg, #fcfffe 0%, #f5fffc 100%);
+}
+
+.plan-preview-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.plan-preview-title {
+  flex: 1;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.plan-preview-time {
+  margin-left: 18rpx;
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  background: #ecfdf5;
+  color: #0f766e;
+  font-size: 20rpx;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.plan-preview-location {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #0f766e;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.plan-preview-step {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 14rpx;
+}
+
+.plan-preview-dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 12rpx;
+  margin-right: 14rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  flex-shrink: 0;
+}
+
+.plan-preview-step-text {
+  flex: 1;
+  font-size: 22rpx;
+  line-height: 1.7;
+  color: #475569;
+}
+
+.import-btn {
+  margin-top: 20rpx;
+}
+
+/* ==================== 多方案选择 ==================== */
+
+.multi-plan-shell {
+  margin-top: 20rpx;
+  animation: fadeUp 320ms ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.variant-tabs {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 20rpx;
+  overflow-x: auto;
+  padding-bottom: 6rpx;
+}
+
+.variant-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.variant-tab {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 12rpx 20rpx;
+  border-radius: 999rpx;
+  background: #f1f5f9;
+  border: 2rpx solid transparent;
+  font-size: 22rpx;
+  color: #64748b;
+  white-space: nowrap;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+
+.variant-tab-active {
+  background: #ecfdf5;
+  border-color: #14b8a6;
+  color: #0f766e;
+  font-weight: 700;
+  box-shadow: 0 4rpx 14rpx rgba(20, 184, 166, 0.18);
+}
+
+.variant-tab-icon {
+  font-size: 24rpx;
+}
+
+.variant-tab-label {
+  font-size: 22rpx;
+}
+
+.variant-detail {
+  animation: fadeUp 320ms ease both;
+}
+
+.variant-desc {
+  font-size: 22rpx;
+  color: #64748b;
+  margin-bottom: 16rpx;
+  padding: 12rpx 18rpx;
+  background: #f8fafc;
+  border-radius: 16rpx;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* ==================== 方案卡片 ==================== */
+
+.plan-card {
+  padding: 22rpx 24rpx 16rpx;
+  margin-bottom: 16rpx;
+  background: linear-gradient(180deg, #fcfffe 0%, #f5fffc 100%);
+  border: 2rpx solid rgba(20, 184, 166, 0.08);
+  border-radius: 20rpx;
+}
+
+.plan-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.plan-card-title {
+  flex: 1;
+  font-size: 25rpx;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.plan-card-time {
+  margin-left: 18rpx;
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  background: #ecfdf5;
+  color: #0f766e;
+  font-size: 20rpx;
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.plan-card-location {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #0f766e;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.plan-card-loc-icon {
+  font-size: 20rpx;
+}
+
+.plan-card-step {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 14rpx;
+}
+
+.plan-card-dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 12rpx;
+  margin-right: 14rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  flex-shrink: 0;
+}
+
+.plan-card-step-text {
+  flex: 1;
+  font-size: 22rpx;
+  line-height: 1.7;
+  color: #475569;
+}
+
+/* ==================== 卡片底部操作栏 ==================== */
+
+.plan-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24rpx;
+  margin-top: 14rpx;
+  padding-top: 14rpx;
+  border-top: 1rpx solid rgba(148, 163, 184, 0.08);
+}
+
+.plan-card-action-link {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  font-size: 21rpx;
+  color: #64748b;
+  padding: 6rpx 4rpx;
+}
+
+.plan-card-action-primary {
+  color: #0f766e;
+  font-weight: 600;
+}
+
+.plan-card-action-icon {
+  font-size: 22rpx;
+}
+
+/* ==================== 导入按钮 ==================== */
+
+.variant-import-btn {
+  margin-top: 8rpx;
+  padding-top: 12rpx;
+}
+
+.ui-btn-full {
+  width: 100%;
+  padding: 22rpx 0;
+  border-radius: 22rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+/* ==================== 打包清单 ==================== */
+
+.bubble-packing {
+  max-width: 90%;
+}
+
+.packing-shell {
+  margin-top: 18rpx;
+}
+
+.packing-content {
+  font-size: 24rpx;
+  line-height: 1.8;
+  color: #475569;
+  white-space: pre-wrap;
+}
+
+/* ==================== 底部输入栏 ==================== */
+
+.ai-input-shell {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  background: linear-gradient(180deg, rgba(240, 247, 244, 0) 0%, rgba(240, 247, 244, 0.96) 10%, rgba(240, 247, 244, 0.99) 100%);
+}
+
+.ai-input-bar {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 20rpx;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid rgba(20, 184, 166, 0.08);
+  box-shadow: 0 -6rpx 24rpx rgba(20, 184, 166, 0.05);
+}
+
+.ai-input {
+  flex: 1;
+  height: 76rpx;
+  padding: 0 26rpx;
+  border-radius: 999rpx;
+  background: #f0f7f4;
+  font-size: 26rpx;
+  color: #0f172a;
+  transition: all 0.25s;
+}
+
+.ai-input:focus {
+  background: #e8f5f0;
+  box-shadow: 0 0 0 2rpx rgba(20, 184, 166, 0.15);
+}
+
+.ai-input::placeholder {
+  color: #94a3b8;
+}
+
+/* 发送按钮 */
+.ai-send-btn {
+  width: 72rpx;
+  height: 72rpx;
+  min-width: 72rpx;
+  margin-left: 14rpx;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+
+.ai-send-active {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  box-shadow: 0 6rpx 18rpx rgba(20, 184, 166, 0.3);
+}
+
+.ai-send-icon {
+  font-size: 30rpx;
+  line-height: 1;
+  color: #94a3b8;
+}
+
+.ai-send-active .ai-send-icon {
+  color: #ffffff;
+}
+
+/* ==================== 通用动画 ==================== */
+
+.tap-scale {
+  transition: transform 0.15s;
+}
+
+.tap-scale:active {
+  transform: scale(0.94);
+}
+
+/* ==================== 卡片通用样式 ==================== */
+
+.card-soft {
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(15, 23, 42, 0.04);
+}
+
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ui-btn-soft {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  color: #ffffff;
+  border-radius: 20rpx;
+  box-shadow: 0 6rpx 20rpx rgba(20, 184, 166, 0.25);
+}
+
+.ui-btn-compact {
+  padding: 18rpx 32rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.ui-btn-primary {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+  color: #ffffff;
+}

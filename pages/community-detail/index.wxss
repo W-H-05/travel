@@ -1,0 +1,100 @@
+.community-detail-page {
+  padding-bottom: 132rpx;
+  background: #ffffff;
+}
+
+.community-detail-author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx;
+}
+
+.community-detail-author-left {
+  display: flex;
+  align-items: center;
+}
+
+.community-detail-avatar {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 16rpx;
+  border-radius: 999rpx;
+}
+
+.community-detail-name {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.community-detail-follow {
+  padding: 14rpx 24rpx;
+  border-radius: 999rpx;
+  background: #14b8a6;
+  color: #ffffff;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.community-detail-image {
+  width: 100%;
+  height: 540rpx;
+}
+
+.community-detail-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #0f172a;
+}
+
+.community-detail-text {
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  line-height: 1.9;
+  color: #334155;
+}
+
+.community-detail-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+  font-size: 20rpx;
+  color: #94a3b8;
+}
+
+.community-detail-bar {
+  display: flex;
+  align-items: center;
+}
+
+.community-detail-input {
+  flex: 1;
+  height: 76rpx;
+  margin-right: 18rpx;
+  padding: 0 24rpx;
+  border-radius: 999rpx;
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.community-detail-actions {
+  display: flex;
+}
+
+.community-action {
+  margin-left: 22rpx;
+  text-align: center;
+  font-size: 18rpx;
+  color: #475569;
+}
+
+.community-action-icon {
+  display: block;
+  margin-bottom: 6rpx;
+  font-size: 28rpx;
+}

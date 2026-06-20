@@ -1,0 +1,18 @@
+<view class="page-shell page-padding safe-bottom">
+  <view wx:if="{{list.length}}" class="two-col-grid">
+    <view wx:for="{{list}}" wx:key="id" class="two-col-item">
+      <view class="card category-detail-card" data-id="{{item.id}}" bindtap="openDestination">
+        <image class="category-detail-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="category-detail-body">
+          <view class="category-detail-title">{{item.name}}</view>
+          <view class="category-detail-region">{{item.region}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty-state">
+    <text class="empty-emoji">🧭</text>
+    <view>这个分类下暂时还没有推荐景点</view>
+  </view>
+</view>

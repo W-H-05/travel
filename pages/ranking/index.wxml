@@ -1,0 +1,16 @@
+<view class="page-shell page-padding safe-bottom">
+  <view class="rank-tabs">
+    <view class="rank-tab {{tab === 'nation' ? 'rank-tab-active' : ''}}" data-key="nation" bindtap="switchTab">国内榜</view>
+    <view class="rank-tab {{tab === 'global' ? 'rank-tab-active' : ''}}" data-key="global" bindtap="switchTab">全球榜</view>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="id" class="rank-item card-soft" data-id="{{item.id}}" bindtap="openDestination">
+    <view class="rank-no {{index < 3 ? 'rank-no-hot' : ''}}">{{index + 1}}</view>
+    <image class="rank-image" src="{{item.image}}" mode="aspectFill"></image>
+    <view class="rank-content">
+      <view class="rank-title">{{item.name}}</view>
+      <view class="rank-region">{{item.region}}</view>
+      <view class="rank-desc line-clamp-2">{{item.description}}</view>
+    </view>
+  </view>
+</view>

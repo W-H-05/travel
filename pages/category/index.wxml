@@ -1,0 +1,12 @@
+<view class="page-shell page-padding safe-bottom">
+  <view class="section-title category-title">全部分类</view>
+  <view class="three-col-grid category-grid">
+    <view wx:for="{{categories}}" wx:key="name" class="three-col-item">
+      <view class="category-card" data-name="{{item.name}}" bindtap="openCategory">
+        <image class="category-card-image" src="{{item.img}}" mode="aspectFill"></image>
+        <view class="category-card-mask"></view>
+        <view class="category-card-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

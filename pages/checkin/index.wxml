@@ -1,0 +1,56 @@
+<view class="page-shell page-padding safe-bottom">
+  <achievement-popup visible="{{achievementPopupVisible}}" achievement="{{achievementPopup}}" bind:close="handleAchievementClose"></achievement-popup>
+
+  <view wx:if="{{showSuccess}}" class="modal-mask"></view>
+  <view wx:if="{{showSuccess}}" class="modal-panel checkin-modal">
+    <view class="checkin-modal-icon">✓</view>
+    <view class="checkin-modal-title">打卡完成</view>
+    <view class="checkin-modal-image-wrap">
+      <image wx:if="{{image}}" class="checkin-modal-image" src="{{image}}" mode="aspectFill"></image>
+      <view wx:else class="checkin-modal-placeholder">📷</view>
+    </view>
+    <view class="checkin-modal-text">{{mood || '没有留下文字，但风景已经在心里。'}}</view>
+  </view>
+
+  <view class="checkin-location card-soft">
+    <view class="checkin-location-icon">📍</view>
+    <view class="checkin-location-main">
+      <view class="checkin-location-label">当前位置</view>
+      <view class="checkin-location-primary">{{locationPrimary}}</view>
+      <view wx:if="{{locationSecondary}}" class="checkin-location-value">{{locationSecondary}}</view>
+      <view class="checkin-location-note">{{locationHint}}</view>
+    </view>
+    <view class="checkin-location-actions">
+      <view class="ui-btn ui-btn-outline ui-btn-pill checkin-location-btn" bindtap="fetchLocation" hover-class="tap-scale">{{locationLoading ? '定位中' : (locationResolving ? '解析中' : '重新定位')}}</view>
+    </view>
+  </view>
+
+  <view class="checkin-requirements card-soft animate-fade-up">
+    <view class="checkin-requirement {{locationReady ? 'checkin-requirement-active' : ''}}">
+      <view class="checkin-requirement-dot"></view>
+      <view>已获取实际位置</view>
+    </view>
+    <view class="checkin-requirement {{image ? 'checkin-requirement-active' : ''}}">
+      <view class="checkin-requirement-dot"></view>
+      <view>已上传风景照片</view>
+    </view>
+    <view class="checkin-requirement {{mood ? 'checkin-requirement-active' : ''}}">
+      <view class="checkin-requirement-dot"></view>
+      <view>已写下此刻想法</view>
+    </view>
+  </view>
+
+  <view class="checkin-title">上传风景照片</view>
+  <view class="checkin-upload" bindtap="chooseImage">
+    <image wx:if="{{image}}" class="checkin-upload-image" src="{{image}}" mode="aspectFill"></image>
+    <view wx:else class="checkin-upload-empty">
+      <view class="checkin-upload-icon">📸</view>
+      <view class="checkin-upload-text">点击上传照片，记录这一刻的风景</view>
+    </view>
+  </view>
+
+  <view class="checkin-title">此刻心情</view>
+  <textarea class="checkin-textarea" placeholder="写下这一刻的想法..." value="{{mood}}" bindinput="handleMoodInput"></textarea>
+
+  <view class="ui-btn ui-btn-primary ui-btn-block" bindtap="handleComplete" hover-class="tap-scale">完成打卡</view>
+</view>

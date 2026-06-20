@@ -1,0 +1,36 @@
+<view wx:if="{{activity}}" class="page-shell activity-page safe-bottom">
+  <achievement-popup visible="{{achievementPopupVisible}}" achievement="{{achievementPopup}}" bind:close="handleAchievementClose"></achievement-popup>
+
+  <view class="activity-hero" style="background: {{activity.color}};">
+    <view class="activity-emoji">🌿</view>
+    <view class="activity-title">{{activity.title}}</view>
+    <view class="activity-location">{{activity.location}}</view>
+  </view>
+
+  <view class="page-padding activity-body">
+    <view class="activity-points card">
+      <view>
+        <view class="activity-points-label">完成活动可获得</view>
+        <view class="activity-points-value">{{activity.points}} 绿色积分</view>
+      </view>
+      <view class="activity-points-icon">🪙</view>
+    </view>
+
+    <view class="section-title activity-section-title">活动介绍</view>
+    <view class="activity-desc">{{activity.description}}</view>
+
+    <view class="section-title activity-section-title">具体任务</view>
+    <view class="task-list">
+      <view wx:for="{{activity.tasks}}" wx:key="index" class="task-item">
+        <view class="task-no">{{index + 1}}</view>
+        <view class="task-text">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="fixed-bottom">
+    <view wx:if="{{!isSignedUp}}" class="ui-btn ui-btn-primary ui-btn-block activity-btn" bindtap="handleSignUp" hover-class="tap-scale">立即报名参加</view>
+    <view wx:elif="{{!isCompleted}}" class="ui-btn ui-btn-warning ui-btn-block activity-btn" bindtap="handleComplete" hover-class="tap-scale">完成活动领取积分</view>
+    <view wx:else class="ui-btn ui-btn-disabled ui-btn-block activity-btn">已完成</view>
+  </view>
+</view>
