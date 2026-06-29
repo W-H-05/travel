@@ -59,6 +59,15 @@ greentravel-wx/
 └── .gitignore
 ```
 
+## 效果演示
+<img width="255" height="535" alt="Snipaste_2026-06-29_14-16-39" src="https://github.com/user-attachments/assets/100f2251-bb2b-4338-ac26-6bd2c1cfb0ba" />
+<img width="255" height="540" alt="44d6907c-c89e-4d51-9392-88b5ef2892d4" src="https://github.com/user-attachments/assets/4d2fab61-e075-4f16-a069-df213fb90623" />
+<img width="253" height="535" alt="Snipaste_2026-06-29_14-25-38" src="https://github.com/user-attachments/assets/fabf11a2-d7eb-49db-b7c8-b952bbb72df5" />
+<img width="254" height="539" alt="Snipaste_2026-06-29_14-26-34" src="https://github.com/user-attachments/assets/e5e48be0-bf73-4059-bdcc-0a1817e47df8" />
+<img width="257" height="538" alt="Snipaste_2026-06-29_14-28-00" src="https://github.com/user-attachments/assets/b189e19c-cab2-49f5-b527-2823706d718f" />
+<img width="254" height="537" alt="Snipaste_2026-06-29_14-28-47" src="https://github.com/user-attachments/assets/7368039f-8399-463a-94bc-4ecb3490eff8" />
+
+
 ## 快速开始
 
 ### 1. 环境准备
